@@ -29,9 +29,6 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"
   />
 
-  <!-- PDF.js for PDF rendering -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-
   <!-- ============== Styles ============== -->
   <style>
     :root{
@@ -185,6 +182,18 @@
     .footer-inner{
       max-width:var(--maxw); margin:auto; padding:24px 20px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
     }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      color: #64748b;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: var(--deep-blue);
+      text-decoration: underline;
+    }
     .mini{
       font-size:14px; color:#64748b;
     }
@@ -198,197 +207,38 @@
       background:#fff7ed; border:1px dashed #fdba74; color:#9a3412;
       padding:12px 14px; border-radius:12px; font-size:14px;
     }
-
-    /* ======= Tool Modal ======= */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
     
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    
-    .modal {
+    /* ======= Policy Pages ======= */
+    .policy-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
       background: white;
       border-radius: var(--radius);
-      width: 90%;
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 24px;
-      position: relative;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
+      box-shadow: var(--shadow);
     }
-    
-    .modal-overlay.active .modal {
-      transform: translateY(0);
-    }
-    
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: #64748b;
-    }
-    
-    .modal-title {
-      margin-top: 0;
+    .policy-container h1 {
       color: var(--deep-blue);
+      margin-top: 0;
     }
-    
-    /* ======= Conversion UI ======= */
-    .upload-area {
-      border: 2px dashed #cbd5e1;
-      border-radius: 12px;
-      padding: 40px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.3s;
-      margin-bottom: 20px;
+    .policy-container h2 {
+      color: var(--deep-blue);
+      margin-top: 30px;
     }
-    
-    .upload-area:hover {
-      border-color: var(--accent);
+    .policy-container ul {
+      padding-left: 20px;
     }
-    
-    .upload-area i {
-      font-size: 48px;
-      color: #94a3b8;
-      margin-bottom: 12px;
-    }
-    
-    .upload-area p {
-      margin: 0;
-      color: #64748b;
-    }
-    
-    .file-input {
-      display: none;
-    }
-    
-    .conversion-options {
-      margin: 20px 0;
-      display: none;
-    }
-    
-    .option-group {
-      margin-bottom: 15px;
-    }
-    
-    .option-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-    
-    .option-group select, .option-group input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-    }
-    
-    .convert-btn {
-      width: 100%;
-      padding: 12px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    
-    .convert-btn:disabled {
-      background: #94a3b8;
-      cursor: not-allowed;
-    }
-    
-    .progress-area {
-      margin: 20px 0;
-      display: none;
-    }
-    
-    .progress-bar {
-      height: 8px;
-      background: #e2e8f0;
-      border-radius: 4px;
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-    
-    .progress-fill {
-      height: 100%;
-      background: var(--accent);
-      width: 0%;
-      transition: width 0.3s;
-    }
-    
-    .progress-text {
-      text-align: center;
-      color: #64748b;
-      font-size: 14px;
-    }
-    
-    .result-area {
-      margin: 20px 0;
-      display: none;
-    }
-    
-    .download-btn {
-      width: 100%;
-      padding: 12px;
-      background: var(--success);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
+    .back-link {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
+      margin-bottom: 20px;
+      color: var(--deep-blue);
+      text-decoration: none;
+      font-weight: 600;
     }
-    
-    .error-message {
-      background: #fee2e2;
-      color: var(--error);
-      padding: 12px;
-      border-radius: 8px;
-      margin: 20px 0;
-      display: none;
-    }
-    
-    .file-info {
-      background: #f1f5f9;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      display: none;
-    }
-    
-    .file-info p {
-      margin: 5px 0;
-      font-size: 14px;
+    .back-link:hover {
+      text-decoration: underline;
     }
   </style>
 
@@ -517,45 +367,107 @@
   <footer>
     <div class="footer-inner">
       <div>© 2024 Kelowe Web Tools. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#privacy-policy" id="privacyLink">Privacy Policy</a>
+        <a href="#terms-conditions" id="termsLink">Terms & Conditions</a>
+      </div>
       <div class="mini">Made with ❤️ for the web.</div>
     </div>
   </footer>
 
-  <!-- ================= Tool Modal ================= -->
-  <div class="modal-overlay" id="toolModal">
-    <div class="modal">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <h2 class="modal-title" id="modalTitle">Tool Name</h2>
+  <!-- ================= Policy Pages (initially hidden) ================= -->
+  <div id="policy-pages" class="hidden">
+    <!-- Privacy Policy -->
+    <div id="privacy-policy" class="policy-container hidden">
+      <a href="#" class="back-link" id="backFromPrivacy">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </a>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: April 10, 2024</p>
       
-      <div class="upload-area" id="uploadArea">
-        <i class="fa-solid fa-cloud-upload-alt"></i>
-        <p>Click or drag & drop your file here</p>
-        <input type="file" class="file-input" id="fileInput">
-      </div>
+      <p>At Kelowe Web Tools, we take your privacy seriously. This Privacy Policy describes how we handle information when you use our website and tools.</p>
       
-      <div class="file-info" id="fileInfo"></div>
+      <h2>Information We Don't Collect</h2>
+      <p>Our tools are designed with privacy in mind:</p>
+      <ul>
+        <li>We do not collect personal information</li>
+        <li>We do not require registration or sign-up</li>
+        <li>We do not use tracking cookies or analytics</li>
+        <li>We do not store your files on our servers</li>
+      </ul>
       
-      <div class="conversion-options" id="conversionOptions">
-        <!-- Options will be dynamically inserted here -->
-      </div>
+      <h2>File Processing</h2>
+      <p>All file conversions happen entirely in your browser:</p>
+      <ul>
+        <li>Your files never leave your computer</li>
+        <li>We don't have access to your files</li>
+        <li>No file data is transmitted to our servers</li>
+        <li>Processed files are immediately available for download</li>
+      </ul>
       
-      <div class="error-message" id="errorMessage"></div>
+      <h2>Information We Collect</h2>
+      <p>The only information we may collect is:</p>
+      <ul>
+        <li>Basic server logs (IP address, browser type, access times)</li>
+        <li>Anonymous usage statistics to improve our services</li>
+      </ul>
       
-      <div class="progress-area" id="progressArea">
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="progress-text" id="progressText">Processing...</div>
-      </div>
+      <h2>Third-Party Services</h2>
+      <p>We use Font Awesome for icons, which may collect limited usage data according to their privacy policy.</p>
       
-      <button class="convert-btn" id="convertBtn" disabled>Convert</button>
+      <h2>Changes to This Policy</h2>
+      <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
       
-      <div class="result-area" id="resultArea">
-        <p>Conversion complete! Download your file:</p>
-        <button class="download-btn" id="downloadBtn">
-          <i class="fa-solid fa-download"></i> Download
-        </button>
-      </div>
+      <h2>Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support@kelowebtools.com.ng">support@kelowebtools.com.ng</a>.</p>
+    </div>
+    
+    <!-- Terms & Conditions -->
+    <div id="terms-conditions" class="policy-container hidden">
+      <a href="#" class="back-link" id="backFromTerms">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </a>
+      <h1>Terms & Conditions</h1>
+      <p>Last updated: April 10, 2024</p>
+      
+      <p>Please read these Terms and Conditions carefully before using the Kelowe Web Tools website.</p>
+      
+      <h2>Acceptance of Terms</h2>
+      <p>By accessing and using Kelowe Web Tools, you accept and agree to be bound by the terms and provision of this agreement.</p>
+      
+      <h2>Use License</h2>
+      <p>Permission is granted to temporarily use Kelowe Web Tools for personal and commercial purposes. This is the grant of a license, not a transfer of title.</p>
+      
+      <h2>Disclaimer</h2>
+      <p>The tools on Kelowe Web Tools are provided "as is." We make no warranties regarding:</p>
+      <ul>
+        <li>The accuracy or reliability of the tools</li>
+        <li>The suitability of converted files for any specific purpose</li>
+        <li>The uninterrupted availability of our service</li>
+      </ul>
+      
+      <h2>Limitations</h2>
+      <p>In no event shall Kelowe Web Tools or its suppliers be liable for any damages arising out of the use or inability to use the tools on our website.</p>
+      
+      <h2>User Responsibilities</h2>
+      <p>You are solely responsible for:</p>
+      <ul>
+        <li>Ensuring you have the right to convert any files you upload</li>
+        <li>Checking converted files for accuracy and suitability</li>
+        <li>Protecting your computer from viruses or malware</li>
+      </ul>
+      
+      <h2>Revisions and Errata</h2>
+      <p>The materials appearing on Kelowe Web Tools could include technical, typographical, or photographic errors. We do not warrant that any of the materials on its website are accurate, complete, or current.</p>
+      
+      <h2>Links</h2>
+      <p>Kelowe Web Tools has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site.</p>
+      
+      <h2>Modifications</h2>
+      <p>Kelowe Web Tools may revise these terms of service at any time without notice. By using this website you are agreeing to be bound by the then current version of these Terms and Conditions.</p>
+      
+      <h2>Governing Law</h2>
+      <p>These terms and conditions are governed by and construed in accordance with the laws of Nigeria and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
     </div>
   </div>
 
@@ -581,241 +493,22 @@
     // ========= Tool Definitions =========
     const tools = {
       pdf: [
-        { 
-          name:'PDF to Word Converter', 
-          slug:'pdf-to-word', 
-          icon:'fa-file-word', 
-          desc:'Convert your PDF files to editable Word documents.',
-          input: ['pdf'],
-          output: 'docx',
-          options: []
-        },
-        { 
-          name:'Word to PDF Converter', 
-          slug:'word-to-pdf', 
-          icon:'fa-file-pdf', 
-          desc:'Turn Word documents into polished PDFs.',
-          input: ['doc', 'docx'],
-          output: 'pdf',
-          options: []
-        },
-        { 
-          name:'PDF to Excel Converter', 
-          slug:'pdf-to-excel', 
-          icon:'fa-file-excel', 
-          desc:'Extract tables from PDF into Excel spreadsheets.',
-          input: ['pdf'],
-          output: 'xlsx',
-          options: []
-        },
-        { 
-          name:'Excel to PDF Converter', 
-          slug:'excel-to-pdf', 
-          icon:'fa-file-pdf', 
-          desc:'Save spreadsheets as shareable PDFs.',
-          input: ['xls', 'xlsx'],
-          output: 'pdf',
-          options: []
-        },
-        { 
-          name:'PDF to PNG Converter', 
-          slug:'pdf-to-png', 
-          icon:'fa-file-image', 
-          desc:'Render PDF pages as crisp PNG images.',
-          input: ['pdf'],
-          output: 'png',
-          options: [
-            {
-              id: 'page',
-              label: 'Page to convert',
-              type: 'select',
-              options: ['All pages', 'First page only', 'Custom range'],
-              default: 'All pages'
-            },
-            {
-              id: 'quality',
-              label: 'Image Quality',
-              type: 'select',
-              options: ['High', 'Medium', 'Low'],
-              default: 'Medium'
-            }
-          ]
-        },
-        { 
-          name:'PNG to PDF Converter', 
-          slug:'png-to-pdf', 
-          icon:'fa-file-pdf', 
-          desc:'Combine PNG images into a single PDF.',
-          input: ['png', 'jpg', 'jpeg'],
-          output: 'pdf',
-          options: [
-            {
-              id: 'orientation',
-              label: 'Page Orientation',
-              type: 'select',
-              options: ['Portrait', 'Landscape'],
-              default: 'Portrait'
-            },
-            {
-              id: 'size',
-              label: 'Page Size',
-              type: 'select',
-              options: ['A4', 'Letter', 'Legal'],
-              default: 'A4'
-            }
-          ]
-        },
-        { 
-          name:'PDF to JPG Converter', 
-          slug:'pdf-to-jpg', 
-          icon:'fa-file-image', 
-          desc:'Convert PDF pages to JPG images.',
-          input: ['pdf'],
-          output: 'jpg',
-          options: [
-            {
-              id: 'page',
-              label: 'Page to convert',
-              type: 'select',
-              options: ['All pages', 'First page only', 'Custom range'],
-              default: 'All pages'
-            },
-            {
-              id: 'quality',
-              label: 'Image Quality',
-              type: 'range',
-              min: 1,
-              max: 100,
-              default: 85
-            }
-          ]
-        },
-        { 
-          name:'JPG to PDF Converter', 
-          slug:'jpg-to-pdf', 
-          icon:'fa-file-pdf', 
-          desc:'Create PDFs from your JPG images.',
-          input: ['jpg', 'jpeg', 'png'],
-          output: 'pdf',
-          options: [
-            {
-              id: 'orientation',
-              label: 'Page Orientation',
-              type: 'select',
-              options: ['Portrait', 'Landscape'],
-              default: 'Portrait'
-            },
-            {
-              id: 'size',
-              label: 'Page Size',
-              type: 'select',
-              options: ['A4', 'Letter', 'Legal'],
-              default: 'A4'
-            }
-          ]
-        },
+        { name:'PDF to Word Converter', slug:'pdf-to-word', icon:'fa-file-word', desc:'Convert your PDF files to editable Word documents.' },
+        { name:'Word to PDF Converter', slug:'word-to-pdf', icon:'fa-file-pdf', desc:'Turn Word documents into polished PDFs.' },
+        { name:'PDF to Excel Converter', slug:'pdf-to-excel', icon:'fa-file-excel', desc:'Extract tables from PDF into Excel spreadsheets.' },
+        { name:'Excel to PDF Converter', slug:'excel-to-pdf', icon:'fa-file-pdf', desc:'Save spreadsheets as shareable PDFs.' },
+        { name:'PDF to PNG Converter', slug:'pdf-to-png', icon:'fa-file-image', desc:'Render PDF pages as crisp PNG images.' },
+        { name:'PNG to PDF Converter', slug:'png-to-pdf', icon:'fa-file-pdf', desc:'Combine PNG images into a single PDF.' },
+        { name:'PDF to JPG Converter', slug:'pdf-to-jpg', icon:'fa-file-image', desc:'Convert PDF pages to JPG images.' },
+        { name:'JPG to PDF Converter', slug:'jpg-to-pdf', icon:'fa-file-pdf', desc:'Create PDFs from your JPG images.' },
       ],
       image: [
-        { 
-          name:'JPG to PNG Converter', 
-          slug:'jpg-to-png', 
-          icon:'fa-image', 
-          desc:'Quickly convert JPG to transparent-friendly PNG.',
-          input: ['jpg', 'jpeg'],
-          output: 'png',
-          options: []
-        },
-        { 
-          name:'PNG to JPG Converter', 
-          slug:'png-to-jpg', 
-          icon:'fa-image', 
-          desc:'Shrink file size by converting PNG to JPG.',
-          input: ['png'],
-          output: 'jpg',
-          options: [
-            {
-              id: 'quality',
-              label: 'JPG Quality',
-              type: 'range',
-              min: 1,
-              max: 100,
-              default: 85
-            }
-          ]
-        },
-        { 
-          name:'WebP to JPG Converter', 
-          slug:'webp-to-jpg', 
-          icon:'fa-images', 
-          desc:'Make WebP images compatible everywhere as JPG.',
-          input: ['webp'],
-          output: 'jpg',
-          options: [
-            {
-              id: 'quality',
-              label: 'JPG Quality',
-              type: 'range',
-              min: 1,
-              max: 100,
-              default: 85
-            }
-          ]
-        },
-        { 
-          name:'WebP to PNG Converter', 
-          slug:'webp-to-png', 
-          icon:'fa-images', 
-          desc:'Convert WebP to PNG with lossless support.',
-          input: ['webp'],
-          output: 'png',
-          options: []
-        },
-        { 
-          name:'Image Resizer', 
-          slug:'image-resizer', 
-          icon:'fa-expand-arrows-alt', 
-          desc:'Resize images to exact dimensions in pixels.',
-          input: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
-          output: 'same',
-          options: [
-            {
-              id: 'width',
-              label: 'Width (px)',
-              type: 'number',
-              default: 800
-            },
-            {
-              id: 'height',
-              label: 'Height (px)',
-              type: 'number',
-              default: 600
-            },
-            {
-              id: 'maintainAspect',
-              label: 'Maintain aspect ratio',
-              type: 'checkbox',
-              default: true
-            }
-          ]
-        },
-        { 
-          name:'Image Compressor', 
-          slug:'image-compressor', 
-          icon:'fa-compress', 
-          desc:'Reduce image file size without losing quality.',
-          input: ['jpg', 'jpeg', 'png', 'webp'],
-          output: 'same',
-          options: [
-            {
-              id: 'quality',
-              label: 'Compression Level',
-              type: 'range',
-              min: 1,
-              max: 100,
-              default: 75
-            }
-          ]
-        },
+        { name:'JPG to PNG Converter', slug:'jpg-to-png', icon:'fa-image', desc:'Quickly convert JPG to transparent-friendly PNG.' },
+        { name:'PNG to JPG Converter', slug:'png-to-jpg', icon:'fa-image', desc:'Shrink file size by converting PNG to JPG.' },
+        { name:'WebP to JPG Converter', slug:'webp-to-jpg', icon:'fa-images', desc:'Make WebP images compatible everywhere as JPG.' },
+        { name:'WebP to PNG Converter', slug:'webp-to-png', icon:'fa-images', desc:'Convert WebP to PNG with lossless support.' },
+        { name:'Image Resizer', slug:'image-resizer', icon:'fa-expand-arrows-alt', desc:'Resize images to exact dimensions in pixels.' },
+        { name:'Image Compressor', slug:'image-compressor', icon:'fa-compress', desc:'Reduce image file size without losing quality.' },
       ]
     };
 
@@ -824,13 +517,14 @@
     const imageGrid = document.getElementById('imageGrid');
 
     function toolCardHTML(t){
+      const href = `tool-placeholder.html?tool=${encodeURIComponent(t.slug)}`;
       return `
         <article class="card" role="listitem" aria-label="${t.name}">
           <div class="icon" aria-hidden="true"><i class="fa-solid ${t.icon}"></i></div>
           <h3>${t.name}</h3>
           <p>${t.desc}</p>
           <div class="actions">
-            <a class="use-link" href="#" data-tool="${t.slug}" aria-label="Use ${t.name}">
+            <a class="use-link" href="${href}" aria-label="Use ${t.name}">
               <i class="fa-solid fa-play"></i> Use Tool
             </a>
           </div>
@@ -841,15 +535,6 @@
     function render(){
       pdfGrid.innerHTML   = tools.pdf.map(toolCardHTML).join('');
       imageGrid.innerHTML = tools.image.map(toolCardHTML).join('');
-      
-      // Add event listeners to tool buttons
-      document.querySelectorAll('.use-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const toolSlug = link.getAttribute('data-tool');
-          openToolModal(toolSlug);
-        });
-      });
     }
     render();
 
@@ -884,279 +569,64 @@
       document.querySelector('#pdf-tools').scrollIntoView({behavior:'smooth', block:'start'});
     }
 
-    // ========= Tool Modal Functionality =========
-    const modal = document.getElementById('toolModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalTitle = document.getElementById('modalTitle');
-    const uploadArea = document.getElementById('uploadArea');
-    const fileInput = document.getElementById('fileInput');
-    const fileInfo = document.getElementById('fileInfo');
-    const conversionOptions = document.getElementById('conversionOptions');
-    const errorMessage = document.getElementById('errorMessage');
-    const progressArea = document.getElementById('progressArea');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
-    const convertBtn = document.getElementById('convertBtn');
-    const resultArea = document.getElementById('resultArea');
-    const downloadBtn = document.getElementById('downloadBtn');
+    // ========= Policy Pages Functionality =========
+    const privacyLink = document.getElementById('privacyLink');
+    const termsLink = document.getElementById('termsLink');
+    const privacyPage = document.getElementById('privacy-policy');
+    const termsPage = document.getElementById('terms-conditions');
+    const policyPages = document.getElementById('policy-pages');
+    const backFromPrivacy = document.getElementById('backFromPrivacy');
+    const backFromTerms = document.getElementById('backFromTerms');
+    const mainContent = document.querySelector('body > :not(footer):not(#policy-pages)');
 
-    let currentTool = null;
-    let uploadedFile = null;
-    let convertedFile = null;
-
-    // Modal close functionality
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    function closeModal() {
-      modal.classList.remove('active');
-      resetModal();
+    function showPolicyPage(page) {
+      // Hide main content
+      mainContent.forEach(el => el.classList.add('hidden'));
+      
+      // Show policy pages container and the specific page
+      policyPages.classList.remove('hidden');
+      page.classList.remove('hidden');
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
     }
 
-    function resetModal() {
-      currentTool = null;
-      uploadedFile = null;
-      convertedFile = null;
+    function hidePolicyPages() {
+      // Hide all policy pages
+      document.querySelectorAll('.policy-container').forEach(page => {
+        page.classList.add('hidden');
+      });
+      policyPages.classList.add('hidden');
       
-      fileInfo.style.display = 'none';
-      conversionOptions.style.display = 'none';
-      errorMessage.style.display = 'none';
-      progressArea.style.display = 'none';
-      resultArea.style.display = 'none';
-      
-      convertBtn.disabled = true;
-      fileInput.value = '';
+      // Show main content
+      mainContent.forEach(el => el.classList.remove('hidden'));
     }
 
-    function openToolModal(toolSlug) {
-      resetModal();
-      
-      // Find the tool by slug
-      let tool = null;
-      for (const category in tools) {
-        tool = tools[category].find(t => t.slug === toolSlug);
-        if (tool) break;
-      }
-      
-      if (!tool) return;
-      
-      currentTool = tool;
-      modalTitle.textContent = tool.name;
-      modal.classList.add('active');
-      
-      // Set up file input
-      const acceptTypes = tool.input.map(ext => `.${ext}`).join(',');
-      fileInput.setAttribute('accept', acceptTypes);
-    }
-
-    // File upload handling
-    uploadArea.addEventListener('click', () => fileInput.click());
-    
-    uploadArea.addEventListener('dragover', (e) => {
+    // Event listeners for policy page links
+    privacyLink.addEventListener('click', (e) => {
       e.preventDefault();
-      uploadArea.style.borderColor = 'var(--accent)';
+      showPolicyPage(privacyPage);
     });
-    
-    uploadArea.addEventListener('dragleave', () => {
-      uploadArea.style.borderColor = '#cbd5e1';
-    });
-    
-    uploadArea.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadArea.style.borderColor = '#cbd5e1';
-      
-      if (e.dataTransfer.files.length) {
-        handleFileSelect(e.dataTransfer.files[0]);
-      }
-    });
-    
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files.length) {
-        handleFileSelect(e.target.files[0]);
-      }
-    });
-    
-    function handleFileSelect(file) {
-      if (!currentTool) return;
-      
-      // Check if file type is valid for this tool
-      const fileExt = file.name.split('.').pop().toLowerCase();
-      if (!currentTool.input.includes(fileExt)) {
-        showError(`Invalid file type. Please upload a ${currentTool.input.join(', ')} file.`);
-        return;
-      }
-      
-      uploadedFile = file;
-      
-      // Show file info
-      const fileSize = formatFileSize(file.size);
-      fileInfo.innerHTML = `
-        <p><strong>File name:</strong> ${file.name}</p>
-        <p><strong>File size:</strong> ${fileSize}</p>
-        <p><strong>File type:</strong> ${file.type || 'Unknown'}</p>
-      `;
-      fileInfo.style.display = 'block';
-      
-      // Show conversion options if any
-      if (currentTool.options && currentTool.options.length) {
-        conversionOptions.innerHTML = '';
-        currentTool.options.forEach(option => {
-          const optionEl = document.createElement('div');
-          optionEl.className = 'option-group';
-          
-          const label = document.createElement('label');
-          label.textContent = option.label;
-          optionEl.appendChild(label);
-          
-          let inputEl;
-          if (option.type === 'select') {
-            inputEl = document.createElement('select');
-            option.options.forEach(opt => {
-              const optionOption = document.createElement('option');
-              optionOption.value = opt;
-              optionOption.textContent = opt;
-              if (opt === option.default) optionOption.selected = true;
-              inputEl.appendChild(optionOption);
-            });
-          } else if (option.type === 'range') {
-            inputEl = document.createElement('input');
-            inputEl.type = 'range';
-            inputEl.min = option.min;
-            inputEl.max = option.max;
-            inputEl.value = option.default;
-            
-            const valueDisplay = document.createElement('span');
-            valueDisplay.textContent = option.default;
-            valueDisplay.style.marginLeft = '10px';
-            
-            inputEl.addEventListener('input', () => {
-              valueDisplay.textContent = inputEl.value;
-            });
-            
-            optionEl.appendChild(inputEl);
-            optionEl.appendChild(valueDisplay);
-          } else if (option.type === 'number') {
-            inputEl = document.createElement('input');
-            inputEl.type = 'number';
-            inputEl.min = 1;
-            inputEl.value = option.default;
-          } else if (option.type === 'checkbox') {
-            inputEl = document.createElement('input');
-            inputEl.type = 'checkbox';
-            inputEl.checked = option.default;
-          }
-          
-          inputEl.id = `option-${option.id}`;
-          optionEl.appendChild(inputEl);
-          conversionOptions.appendChild(optionEl);
-        });
-        conversionOptions.style.display = 'block';
-      }
-      
-      // Enable convert button
-      convertBtn.disabled = false;
-      
-      // Hide any previous errors
-      errorMessage.style.display = 'none';
-    }
-    
-    // Convert button handling
-    convertBtn.addEventListener('click', startConversion);
-    
-    function startConversion() {
-      if (!uploadedFile || !currentTool) return;
-      
-      // Hide results and errors, show progress
-      resultArea.style.display = 'none';
-      errorMessage.style.display = 'none';
-      progressArea.style.display = 'block';
-      convertBtn.disabled = true;
-      
-      // Get conversion options
-      const options = {};
-      if (currentTool.options) {
-        currentTool.options.forEach(option => {
-          const inputEl = document.getElementById(`option-${option.id}`);
-          if (option.type === 'checkbox') {
-            options[option.id] = inputEl.checked;
-          } else {
-            options[option.id] = inputEl.value;
-          }
-        });
-      }
-      
-      // Simulate progress for demonstration
-      let progress = 0;
-      const progressInterval = setInterval(() => {
-        progress += 5;
-        if (progress > 100) progress = 100;
-        
-        progressFill.style.width = `${progress}%`;
-        progressText.textContent = `Processing... ${progress}%`;
-        
-        if (progress === 100) {
-          clearInterval(progressInterval);
-          finishConversion(options);
-        }
-      }, 100);
-    }
-    
-    function finishConversion(options) {
-      // In a real implementation, this would process the file
-      // For this demo, we'll simulate conversion
-      
-      try {
-        // Get file extension for output
-        let outputExt = currentTool.output;
-        if (outputExt === 'same') {
-          outputExt = uploadedFile.name.split('.').pop();
-        }
-        
-        // Create a mock converted file (in a real app, this would be the actual conversion)
-        const outputFileName = `${uploadedFile.name.split('.')[0]}.${outputExt}`;
-        convertedFile = new File([uploadedFile], outputFileName, { 
-          type: `application/${outputExt}` 
-        });
-        
-        // Show download button
-        downloadBtn.onclick = () => downloadFile(convertedFile);
-        resultArea.style.display = 'block';
-        
-      } catch (error) {
-        showError('Conversion failed: ' + error.message);
-      }
-      
-      progressArea.style.display = 'none';
-    }
-    
-    function downloadFile(file) {
-      const url = URL.createObjectURL(file);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = file.name;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-    
-    function showError(message) {
-      errorMessage.textContent = message;
-      errorMessage.style.display = 'block';
-    }
-    
-    function formatFileSize(bytes) {
-      if (bytes === 0) return '0 Bytes';
-      const k = 1024;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    }
 
-    // Initialize PDF.js worker
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    termsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPolicyPage(termsPage);
+    });
+
+    backFromPrivacy.addEventListener('click', (e) => {
+      e.preventDefault();
+      hidePolicyPages();
+    });
+
+    backFromTerms.addEventListener('click', (e) => {
+      e.preventDefault();
+      hidePolicyPages();
+    });
+
+    // Handle browser back button
+    window.addEventListener('popstate', () => {
+      hidePolicyPages();
+    });
   </script>
 </body>
 </html>

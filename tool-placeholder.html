@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Coming Soon - Kelowe Web Tools</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0d2b55;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ff6b35;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #e55a2b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tool Under Development</h1>
+        <p>The <span id="tool-name">requested tool</span> is under active development. Our team is working hard to bring you this functionality as soon as possible.</p>
+        <p>Please check back soon for updates!</p>
+        <a href="index.html" class="btn">Return to Homepage</a>
+    </div>
+
+    <script>
+        // Get tool name from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const toolParam = urlParams.get('tool');
+        
+        if (toolParam) {
+            // Convert parameter to readable tool name
+            const toolName = toolParam.split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+            document.getElementById('tool-name').textContent = toolName;
+        }
+    </script>
+</body>
+</html>

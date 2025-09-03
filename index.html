@@ -1,644 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelowe Web Tools - Free Online Converter Tools</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Global Styles */
-        :root {
-            --primary: #0d2b55;
-            --secondary: #ff6b35;
-            --accent: #28a745;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --white: #ffffff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--secondary);
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #e55a2b;
-            transform: translateY(-2px);
-        }
-        
-        .btn-accent {
-            background-color: var(--accent);
-        }
-        
-        .btn-accent:hover {
-            background-color: #218838;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--primary);
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, var(--primary) 0%, #1a4680 100%);
-            color: var(--white);
-            text-align: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        /* Tools Section */
-        .tools-section {
-            padding: 80px 0;
-        }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .tool-card {
-            background: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            padding: 30px 20px;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tool-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .tool-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .tool-card p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-        
-        /* Coming Soon Section */
-        .coming-soon {
-            padding: 80px 0;
-            background-color: #f1f7ff;
-            text-align: center;
-        }
-        
-        .coming-soon-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .coming-soon-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .coming-soon-content p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 40px 0 20px;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
-        .footer-nav {
-            margin-bottom: 20px;
-        }
-        
-        .footer-nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        .footer-nav ul li {
-            margin: 0 15px;
-        }
-        
-        .footer-nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-nav ul li a:hover {
-            color: var(--secondary);
-        }
-        
-        .copyright {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 0 20px;
-            }
-            
-            nav {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 80%;
-                height: calc(100vh - 70px);
-                background-color: var(--primary);
-                transition: all 0.3s ease;
-                box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav.active {
-                left: 0;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                padding: 30px;
-            }
-            
-            nav ul li {
-                margin: 15px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 130px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .tools-section {
-                padding: 60px 0;
-            }
-            
-            .footer-nav ul {
-                flex-direction: column;
-            }
-            
-            .footer-nav ul li {
-                margin: 10px 0;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-            }
-            
-            .tool-card {
-                padding: 20px 15px;
-            }
-        }
-    </style>
+  <!-- =========================
+       SEO & META
+  ========================== -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelowe Web Tools – Free Online Converters (PDF, Image & More)</title>
+  <meta name="description" content="Kelowe Web Tools is your free all-in-one converter toolkit. Convert PDF to Word, JPG to PNG, compress images, and more — fast, secure, and 100% free." />
+  <meta name="keywords" content="free online tools, pdf to word, word to pdf, image converter, jpg to png, png to jpg, pdf converter, webp converter, image compressor" />
+  <link rel="canonical" href="https://kelowebtools.com.ng/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kelowe Web Tools – Free Online Converters" />
+  <meta property="og:description" content="Your free all-in-one converter toolkit for PDF & images." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kelowebtools.com.ng/" />
+  <meta property="og:image" content="https://kelowebtools.com.ng/og-image.jpg" /> <!-- Replace with your image -->
+
+  <!-- Favicon (replace with your files) -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Font: system stack for speed -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <!-- Font Awesome Icons (icons only; no CSS frameworks used) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-c5u4kQxJ1mvwdCwW9H1M2w7E8q1e2qU1V7v+u5KX3N9Yw8kK8F6z3xk9w1d0z0z8j7X2oS3r0c9fJm2w9igwWg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- =========================
+       Google AdSense
+       (Auto Ads: paste your real code below)
+       Replace YOUR-CA-PUB with your publisher id
+       and remove the surrounding HTML comment!
+  ========================== -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+          crossorigin="anonymous"></script>
+  -->
+
+  <!-- =========================
+       JSON-LD (Organization + Website)
+       Update "name", "url", and "logo" as needed
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "WebSite"],
+    "name": "Kelowe Web Tools",
+    "url": "https://kelowebtools.com.ng/",
+    "logo": "https://kelowebtools.com.ng/logo.png",
+    "sameAs": []
+  }
+  </script>
+
+  <style>
+    :root{
+      --deep: #0d2b55;
+      --white: #ffffff;
+      --accent: #ff6b35; /* You can switch to #28a745 (green) if preferred */
+      --muted: #f5f7fb;
+      --text: #213547;
+      --text-light:#6b7a90;
+      --card:#ffffff;
+      --shadow: 0 10px 20px rgba(13,43,85,0.08);
+      --radius: 16px;
+      --maxw: 1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      color:var(--text);
+      background:linear-gradient(180deg, #f7faff 0%, #ffffff 100%);
+    }
+
+    /* Header / Nav */
+    .nav{
+      position:sticky; top:0; z-index:1000;
+      background:var(--deep);
+      color:var(--white);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .nav-inner{
+      max-width:var(--maxw); margin:0 auto; padding:12px 20px;
+      display:flex; align-items:center; gap:20px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--white);
+      font-weight:800; letter-spacing:.3px;
+    }
+    .brand .logo{
+      width:38px; height:38px; border-radius:10px;
+      background:linear-gradient(135deg, var(--accent), #ffa37f);
+      display:grid; place-items:center; box-shadow: var(--shadow);
+      font-weight:900;
+    }
+    .brand span{ font-size:1.05rem; }
+    .nav-links{ margin-left:auto; display:flex; align-items:center; gap:14px; }
+    .nav-links a{
+      color:#e9f1ff; text-decoration:none; padding:10px 12px; border-radius:10px; font-weight:600; font-size:.95rem;
+      transition: all .2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active{ background:rgba(255,255,255,.12); color:#fff; }
+    .menu-btn{ display:none; margin-left:auto; background:transparent; border:0; color:#fff; font-size:1.5rem; }
+
+    /* Mobile menu */
+    @media (max-width: 860px){
+      .nav-links{
+        position:fixed; inset:60px 16px auto 16px;
+        background:#0d2b55; border:1px solid rgba(255,255,255,.08); border-radius:14px;
+        flex-direction:column; align-items:stretch; padding:10px; display:none;
+      }
+      .nav-links.open{ display:flex; }
+      .menu-btn{ display:block; }
+    }
+
+    /* Hero */
+    .hero{
+      max-width:var(--maxw); margin:0 auto; padding:72px 20px 36px; display:grid; gap:22px;
+      grid-template-columns: 1.2fr .8fr;
+      align-items:center;
+    }
+    .hero h1{
+      font-size: clamp(1.9rem, 3.2vw + 1rem, 3rem);
+      line-height:1.1; margin:0 0 10px; color:var(--deep);
+    }
+    .hero p{ color:var(--text-light); font-size:1.08rem; margin:0 0 18px; }
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--accent); color:#fff; border:0; border-radius:12px; padding:12px 16px;
+      text-decoration:none; font-weight:800; box-shadow:var(--shadow);
+    }
+    .hero-card{
+      background:var(--card); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); border:1px solid #e8eef8;
+    }
+    .hero-list{margin:0; padding:0; list-style:none; display:grid; gap:10px;}
+    .hero-list li i{ margin-right:10px; color:var(--accent); }
+
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; padding-top:34px; }
+    }
+
+    /* Search */
+    .search-wrap{
+      max-width:var(--maxw); margin:10px auto 0; padding:0 20px 26px;
+      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+    }
+    .search{
+      display:flex; align-items:center; gap:10px; flex:1;
+      background:#fff; border:1px solid #e5eaf4; border-radius:14px; padding:10px 14px;
+      box-shadow: var(--shadow);
+    }
+    .search input{
+      border:0; outline:0; font-size:1rem; flex:1; color:var(--text); background:transparent;
+    }
+    .tagline{ color:var(--text-light); font-size:.95rem; }
+
+    /* Section */
+    section{ padding:26px 20px 10px; }
+    .container{ max-width:var(--maxw); margin:0 auto; }
+    .section-head{
+      display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:14px;
+    }
+    .section-head h2{ margin:0; font-size:1.4rem; color:var(--deep); }
+    .section-desc{ color:var(--text-light); margin:0; }
+
+    /* Cards */
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+    }
+    @media (max-width: 1100px){ .grid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    @media (max-width: 760px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 480px){ .grid{ grid-template-columns: 1fr; } }
+
+    .card{
+      background:var(--card); border:1px solid #e8eef8; border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px;
+      transition:transform .12s ease, box-shadow .2s ease;
+    }
+    .card:hover{ transform: translateY(-2px); box-shadow:0 12px 24px rgba(13,43,85,0.12); }
+    .card .icon{
+      width:42px; height:42px; border-radius:12px; display:grid; place-items:center; background: #fef3ee; color:var(--accent);
+    }
+    .card h3{ margin:2px 0 6px; font-size:1.05rem; }
+    .card p{ margin:0; color:var(--text-light); font-size:.95rem; }
+    .card .actions{ margin-top:auto; }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:700;
+      padding:10px 12px; border-radius:10px; border:1px solid var(--accent); color:#fff; background:var(--accent);
+    }
+    .btn-outline{
+      background:#fff; color:var(--accent);
+    }
+
+    /* In-content Ad block (example) */
+    .ad-block{
+      max-width:var(--maxw); margin:20px auto; padding:0 20px 10px;
+    }
+    .ad-inner{
+      border:1px dashed #d9e3f4; border-radius:14px; padding:12px; background:#fbfdff; color:#7b8aa6; font-size:.9rem;
+    }
+
+    /* More Tools placeholder */
+    .placeholder{
+      background:var(--muted); border:1px solid #e5eaf4; border-radius:var(--radius); padding:18px; color:#4b5a70;
+    }
+
+    /* Footer */
+    footer{
+      margin-top:36px; background:#071b38; color:#cfe1ff; padding:22px 20px;
+    }
+    footer .inner{ max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+    footer a{ color:#fff; text-decoration:none; opacity:.9 }
+    footer a:hover{ opacity:1; text-decoration:underline; }
+
+    /* Back to top */
+    .back-to-top{
+      position:fixed; right:16px; bottom:16px; border:0; border-radius:50%; width:44px; height:44px;
+      display:grid; place-items:center; background:var(--deep); color:#fff; box-shadow:var(--shadow); cursor:pointer;
+      opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+    }
+    .back-to-top.show{ opacity:1; pointer-events:auto; }
+    .back-to-top:hover{ transform: translateY(-2px); }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Kelowe<span>WebTools</span></a>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav id="nav">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#pdf-tools">PDF Tools</a></li>
-                    <li><a href="#image-tools">Image Tools</a></li>
-                    <li><a href="#more-tools">More Tools</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Your Free All-in-One Converter Toolkit</h1>
-            <p>Convert, transform, and optimize your files with our easy-to-use online tools. No installation required, completely free!</p>
-            <a href="#pdf-tools" class="btn">Explore Tools</a>
-        </div>
+  <!-- =========================
+       Header / Navigation
+  ========================== -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="Kelowe Web Tools Home">
+        <div class="logo">K</div>
+        <span>Kelowe Web Tools</span>
+      </a>
+
+      <button class="menu-btn" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#home" class="active">Home</a>
+        <a href="#pdf-tools">PDF Tools</a>
+        <a href="#image-tools">Image Tools</a>
+        <a href="#more-tools">More Tools</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================
+       Hero
+  ========================== -->
+  <main id="home">
+    <section class="hero container">
+      <div>
+        <h1>Your Free All-in-One Converter Toolkit</h1>
+        <p>Convert PDFs, images, and more — fast, secure, and always free. No sign-up required.</p>
+        <a href="#pdf-tools" class="cta"><i class="fa-solid fa-wand-magic-sparkles"></i> Explore Tools</a>
+      </div>
+      <div class="hero-card">
+        <ul class="hero-list">
+          <li><i class="fa-solid fa-file-pdf"></i> PDF to Word, Excel, Image</li>
+          <li><i class="fa-solid fa-image"></i> JPG ⇄ PNG, WebP ⇄ JPG/PNG</li>
+          <li><i class="fa-solid fa-maximize"></i> Image Resize & <i class="fa-solid fa-compress"></i> Compression</li>
+          <li><i class="fa-solid fa-shield-halved"></i> Files processed securely on your device (coming soon)</li>
+        </ul>
+      </div>
     </section>
 
-    <!-- PDF Tools Section -->
-    <section class="tools-section" id="pdf-tools">
-        <div class="container">
-            <div class="section-title">
-                <h2>PDF Converter Tools</h2>
-                <p>Convert your PDF files to various formats and vice versa with our reliable PDF tools</p>
-            </div>
-            
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-word"></i>
-                    </div>
-                    <h3>PDF to Word</h3>
-                    <p>Convert your PDF files to editable Word documents with perfect formatting.</p>
-                    <a href="tool-placeholder.html?tool=pdf-to-word" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3>Word to PDF</h3>
-                    <p>Convert Word documents to PDF format for easy sharing and printing.</p>
-                    <a href="tool-placeholder.html?tool=word-to-pdf" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-excel"></i>
-                    </div>
-                    <h3>PDF to Excel</h3>
-                    <p>Extract tables from PDF and convert them to editable Excel spreadsheets.</p>
-                    <a href="tool-placeholder.html?tool=pdf-to-excel" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3>Excel to PDF</h3>
-                    <p>Convert Excel spreadsheets to PDF format while preserving layout.</p>
-                    <a href="tool-placeholder.html?tool=excel-to-pdf" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-image"></i>
-                    </div>
-                    <h3>PDF to PNG</h3>
-                    <p>Convert PDF pages to high-quality PNG images for easy use in presentations.</p>
-                    <a href="tool-placeholder.html?tool=pdf-to-png" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3>PNG to PDF</h3>
-                    <p>Combine multiple PNG images into a single PDF document.</p>
-                    <a href="tool-placeholder.html?tool=png-to-pdf" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-image"></i>
-                    </div>
-                    <h3>PDF to JPG</h3>
-                    <p>Convert PDF pages to JPG images suitable for web use.</p>
-                    <a href="tool-placeholder.html?tool=pdf-to-jpg" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3>JPG to PDF</h3>
-                    <p>Convert your JPG images to PDF files for easy archiving and sharing.</p>
-                    <a href="tool-placeholder.html?tool=jpg-to-pdf" class="btn">Use Tool</a>
-                </div>
-            </div>
+    <!-- Search / Filter -->
+    <div class="search-wrap">
+      <div class="search" role="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="toolSearch" type="text" placeholder="Search tools (e.g., pdf, word, jpg, compress)..." aria-label="Search tools" />
+      </div>
+      <div class="tagline">Tip: Use the search to quickly find any converter.</div>
+    </div>
+
+    <!-- ===== Example In-Content Ad Unit (optional) =====
+         Replace with your own ad unit code and remove comment.
+         Example Responsive Display Ad:
+    <div class="ad-block">
+      <div class="ad-inner">
+        <ins class="adsbygoogle"
+             style="display:block" data-ad-format="fluid"
+             data-ad-layout-key="-gw-3+1f-3d+2z"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+    =================================================== -->
+
+    <!-- =========================
+         Section 1: PDF Converter Tools
+    ========================== -->
+    <section id="pdf-tools">
+      <div class="container">
+        <div class="section-head">
+          <h2><i class="fa-solid fa-file-pdf"></i> PDF Converter Tools</h2>
+          <p class="section-desc">Work with your PDFs in seconds.</p>
         </div>
+
+        <div class="grid" id="pdfGrid" data-section="pdf">
+          <!-- Card: PDF to Word -->
+          <article class="card" data-name="PDF to Word Converter" data-tags="pdf, word, docx, convert">
+            <div class="icon"><i class="fa-solid fa-file-word"></i></div>
+            <h3>PDF to Word</h3>
+            <p>Convert your PDF files to editable Word documents.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=pdf-to-word">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Card: Word to PDF -->
+          <article class="card" data-name="Word to PDF Converter" data-tags="word, docx, pdf, convert">
+            <div class="icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <h3>Word to PDF</h3>
+            <p>Turn DOC/DOCX documents into high-quality PDFs.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=word-to-pdf">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- PDF to Excel -->
+          <article class="card" data-name="PDF to Excel Converter" data-tags="pdf, xls, xlsx, excel, table">
+            <div class="icon"><i class="fa-solid fa-file-excel"></i></div>
+            <h3>PDF to Excel</h3>
+            <p>Extract tables from PDFs into XLSX spreadsheets.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=pdf-to-excel">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Excel to PDF -->
+          <article class="card" data-name="Excel to PDF Converter" data-tags="excel, xlsx, pdf, sheet">
+            <div class="icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <h3>Excel to PDF</h3>
+            <p>Export spreadsheets to universally shareable PDFs.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=excel-to-pdf">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- PDF to PNG -->
+          <article class="card" data-name="PDF to PNG Converter" data-tags="pdf, png, image, convert">
+            <div class="icon"><i class="fa-solid fa-image"></i></div>
+            <h3>PDF to PNG</h3>
+            <p>Render PDF pages to crisp PNG images.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=pdf-to-png">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- PNG to PDF -->
+          <article class="card" data-name="PNG to PDF Converter" data-tags="png, pdf, combine, convert">
+            <div class="icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <h3>PNG to PDF</h3>
+            <p>Combine PNG images into a single PDF file.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=png-to-pdf">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- PDF to JPG -->
+          <article class="card" data-name="PDF to JPG Converter" data-tags="pdf, jpg, jpeg, image">
+            <div class="icon"><i class="fa-regular fa-image"></i></div>
+            <h3>PDF to JPG</h3>
+            <p>Convert PDF pages into JPEG images.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=pdf-to-jpg">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- JPG to PDF -->
+          <article class="card" data-name="JPG to PDF Converter" data-tags="jpg, jpeg, pdf, combine">
+            <div class="icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <h3>JPG to PDF</h3>
+            <p>Merge JPG images into a single, neat PDF.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=jpg-to-pdf">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- Image Tools Section -->
-    <section class="tools-section" id="image-tools" style="background-color: #f1f7ff;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Image Converter Tools</h2>
-                <p>Convert, resize, and optimize your images with our powerful image processing tools</p>
-            </div>
-            
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <h3>JPG to PNG</h3>
-                    <p>Convert JPG images to PNG format with transparent background support.</p>
-                    <a href="tool-placeholder.html?tool=jpg-to-png" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <h3>PNG to JPG</h3>
-                    <p>Convert PNG images to JPG format for smaller file sizes and web optimization.</p>
-                    <a href="tool-placeholder.html?tool=png-to-jpg" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <h3>WebP to JPG</h3>
-                    <p>Convert modern WebP images to widely compatible JPG format.</p>
-                    <a href="tool-placeholder.html?tool=webp-to-jpg" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <h3>WebP to PNG</h3>
-                    <p>Convert WebP images to PNG format while preserving transparency.</p>
-                    <a href="tool-placeholder.html?tool=webp-to-png" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </div>
-                    <h3>Image Resizer</h3>
-                    <p>Resize your images to specific dimensions without losing quality.</p>
-                    <a href="tool-placeholder.html?tool=image-resizer" class="btn">Use Tool</a>
-                </div>
-                
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <i class="fas fa-compress-arrows-alt"></i>
-                    </div>
-                    <h3>Image Compressor</h3>
-                    <p>Reduce image file size without noticeable quality loss for faster websites.</p>
-                    <a href="tool-placeholder.html?tool=image-compressor" class="btn">Use Tool</a>
-                </div>
-            </div>
+    <!-- =========================
+         Section 2: Image Converter Tools
+    ========================== -->
+    <section id="image-tools">
+      <div class="container">
+        <div class="section-head">
+          <h2><i class="fa-solid fa-images"></i> Image Converter Tools</h2>
+          <p class="section-desc">Convert, resize, and compress images.</p>
         </div>
+
+        <div class="grid" id="imageGrid" data-section="image">
+          <!-- JPG to PNG -->
+          <article class="card" data-name="JPG to PNG Converter" data-tags="jpg, jpeg, png, image, convert">
+            <div class="icon"><i class="fa-regular fa-image"></i></div>
+            <h3>JPG to PNG</h3>
+            <p>Convert JPG/JPEG images to PNG format.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=jpg-to-png">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- PNG to JPG -->
+          <article class="card" data-name="PNG to JPG Converter" data-tags="png, jpg, jpeg, convert">
+            <div class="icon"><i class="fa-regular fa-image"></i></div>
+            <h3>PNG to JPG</h3>
+            <p>Convert PNG images to JPG/JPEG format.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=png-to-jpg">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- WebP to JPG -->
+          <article class="card" data-name="WebP to JPG Converter" data-tags="webp, jpg, jpeg, convert">
+            <div class="icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <h3>WebP to JPG</h3>
+            <p>Convert modern WebP images to JPG.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=webp-to-jpg">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- WebP to PNG -->
+          <article class="card" data-name="WebP to PNG Converter" data-tags="webp, png, convert">
+            <div class="icon"><i class="fa-solid fa-shuffle"></i></div>
+            <h3>WebP to PNG</h3>
+            <p>Convert WebP format images to PNG.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=webp-to-png">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Image Resizer -->
+          <article class="card" data-name="Image Resizer" data-tags="resize, resizer, dimensions, image">
+            <div class="icon"><i class="fa-solid fa-maximize"></i></div>
+            <h3>Image Resizer</h3>
+            <p>Resize images by width, height, or percentage.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=image-resizer">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Image Compressor -->
+          <article class="card" data-name="Image Compressor" data-tags="compress, compression, image, quality">
+            <div class="icon"><i class="fa-solid fa-compress"></i></div>
+            <h3>Image Compressor</h3>
+            <p>Reduce image file size while keeping quality.</p>
+            <div class="actions">
+              <a class="btn" href="tool-placeholder.html?tool=image-compressor">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- More Tools Section -->
-    <section class="coming-soon" id="more-tools">
-        <div class="container coming-soon-content">
-            <h2>More Exciting Tools Coming Soon!</h2>
-            <p>We're constantly working to expand our toolkit. Stay tuned for new converters, utilities, and productivity tools that will make your digital life easier.</p>
-            <a href="#contact" class="btn btn-accent">Get Notified</a>
+    <!-- =========================
+         Section 3: More Tools (Placeholder)
+    ========================== -->
+    <section id="more-tools">
+      <div class="container">
+        <div class="section-head">
+          <h2><i class="fa-solid fa-toolbox"></i> More Tools</h2>
+          <p class="section-desc">We’re just getting started.</p>
         </div>
+        <div class="placeholder">
+          <p><strong>More exciting tools are coming soon! Stay tuned.</strong></p>
+          <p>We’re building additional utilities like PDF merge/split, watermark remover, image cropper, and more.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="tools-section" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Have questions or suggestions? We'd love to hear from you!</p>
-            </div>
-            
-            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-                <p>Send us your feedback, tool requests, or report any issues you encounter while using our tools.</p>
-                <p>Email: <strong>support@kelowebtools.com.ng</strong></p>
-                <p>We're committed to improving your experience with our free online tools.</p>
-            </div>
+    <!-- =========================
+         Contact
+    ========================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2><i class="fa-solid fa-envelope"></i> Contact</h2>
+          <p class="section-desc">Have a feature request or found a bug? Let’s talk.</p>
         </div>
+
+        <div class="grid" style="grid-template-columns: 1fr;">
+          <article class="card">
+            <h3>Get in touch</h3>
+            <p>Email: <a href="mailto:support@kelowebtools.com.ng">support@kelowebtools.com.ng</a></p>
+            <p>Twitter/X: <a href="#" target="_blank" rel="noopener">Coming soon</a></p>
+            <p>We aim to respond within 24–48 hours.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">Kelowe<span>WebTools</span></div>
-            <div class="footer-nav">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#pdf-tools">PDF Tools</a></li>
-                    <li><a href="#image-tools">Image Tools</a></li>
-                    <li><a href="#more-tools">More Tools</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 Kelowe Web Tools. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+  </main>
 
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.getElementById('nav');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+  <!-- =========================
+       Footer
+  ========================== -->
+  <footer>
+    <div class="inner">
+      <div>© <span id="year"></span> Kelowe Web Tools. All rights reserved.</div>
+      <div><a href="#top">Back to top</a></div>
+    </div>
+  </footer>
+
+  <!-- Back to top FAB -->
+  <button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script>
+    // ---------------------------
+    //  Mobile Menu Toggle
+    // ---------------------------
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    // Close menu on link click (mobile)
+    navLinks.addEventListener('click', (e) => {
+      if(e.target.tagName.toLowerCase() === 'a'){
+        navLinks.classList.remove('open');
+      }
+    });
+
+    // ---------------------------
+    //  Active Link on Scroll (ScrollSpy)
+    // ---------------------------
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = '#'+entry.target.id;
+        const link = document.querySelector('.nav-links a[href="'+id+'"]');
+        if(entry.isIntersecting){
+          links.forEach(a => a.classList.remove('active'));
+          if(link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-50% 0px -45% 0px', threshold: 0 });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // ---------------------------
+    //  Back to Top Button
+    // ---------------------------
+    const backBtn = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 500){ backBtn.classList.add('show'); }
+      else{ backBtn.classList.remove('show'); }
+    });
+    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ---------------------------
+    //  Footer Year
+    // ---------------------------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------------------------
+    //  Tool Search (client-side filter)
+    // ---------------------------
+    const searchInput = document.getElementById('toolSearch');
+    const allCards = document.querySelectorAll('.card');
+
+    function normalize(s){ return s.toLowerCase().trim(); }
+
+    searchInput.addEventListener('input', () => {
+      const q = normalize(searchInput.value);
+      allCards.forEach(card => {
+        const name = normalize(card.dataset.name || '');
+        const tags = normalize(card.dataset.tags || '');
+        const hit = !q || name.includes(q) || tags.includes(q);
+        card.style.display = hit ? '' : 'none';
+      });
+    });
+
+    // ---------------------------
+    //  Optional: Deep link to a section via URL hash
+    // ---------------------------
+    if(location.hash){
+      const el = document.querySelector(location.hash);
+      if(el){ el.scrollIntoView({ behavior: 'smooth' }); }
+    }
+  </script>
 </body>
 </html>
